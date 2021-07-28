@@ -6,18 +6,10 @@ Preview the icons at [heroicons.com](https://heroicons.com), developed by [Steve
 
 ## Installation
 
-### Composer (recommended)
+### Composer
 
 ```shell
 composer require roelmagdaleno/php-heroicons
-```
-
-### Manual
-
-Download this repo, or the [latest release](https://github.com/roelmagdaleno/php-heroicons/releases), and put it somewhere in your project. Then do:
-
-```php
-require_once __DIR__ . '/vendor/autoload.php';
 ```
 
 ## Usage
