@@ -14,7 +14,7 @@ composer require roelmagdaleno/php-heroicons
 
 ### Manual
 
-[Download](https://github.com/roelmagdaleno/php-heroicons/zipball/master) this repo, or the [latest release](https://github.com/roelmagdaleno/php-heroicons/releases), and put it somewhere in your project. Then do:
+Download this repo, or the [latest release](https://github.com/roelmagdaleno/php-heroicons/releases), and put it somewhere in your project. Then do:
 
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
