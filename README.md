@@ -4,6 +4,8 @@ A package to render [Heroicons](https://github.com/tailwindlabs/heroicons) in yo
 
 Preview the icons at [heroicons.com](https://heroicons.com), developed by [Steve Schoger](https://twitter.com/steveschoger) and [Adam Wathan](https://twitter.com/adamwathan).
 
+If you want to render Heroicons in your Laravel Blade views, use [Blade Heroicons](https://github.com/blade-ui-kit/blade-heroicons) package.
+
 ## Installation
 
 ### Composer
