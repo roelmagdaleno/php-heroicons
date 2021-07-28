@@ -1,0 +1,26 @@
+{
+    "name": "roelmagdaleno/php-heroicons",
+    "description": "Render Heroicons from PHP.",
+    "keywords": ["Icons", "Heroicons", "PHP"],
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roel Magdaleno",
+            "homepage": "https://roelmagdaleno.com",
+            "email": "roelmagdaleno@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "meyfa/php-svg": "^0.11.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPHeroIcons\\": "src/"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    }
+}
