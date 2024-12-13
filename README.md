@@ -152,4 +152,4 @@ heroicon(
 
 ## Examples
 
-For more usage examples visit the `examples/index.php` file.
+For more usage examples visit the `examples/index.php` file or visit the [PHPSandbox.io](https://phpsandbox.io/e/x/8qt7v?layout=EditorPreview&iframeId=z2x1jnoxen&theme=dark&defaultPath=%2F&showExplorer=no#index.php) to play with the code.
