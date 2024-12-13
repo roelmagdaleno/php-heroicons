@@ -7,61 +7,41 @@ use SVG\SVG;
 class Icon {
 	/**
 	 * Validates if current icon should be returned if property is set
-	 * to "true", otherwise "false" means print it directly.
+	 * to `true`, otherwise `false` means print it directly.
 	 *
 	 * @since 1.0.0
-	 * @var   bool   $return   Whether to return the icon or print it if "false".
+     *
+	 * @var bool $return Whether to return the icon or print it if false.
 	 */
-	private $return = false;
+	protected bool $return = false;
 
 	/**
-	 * Store the icon slug.
-	 *
-	 * @since 1.0.0
-	 * @var   string   $icon   The icon slug.
-	 */
-	public $icon;
-
-	/**
-	 * Store the icon attributes.
-	 *
-	 * @since 1.0.0
-	 * @var   array   $attributes   The icon attributes.
-	 */
-	public $attributes;
-
-	/**
-	 * Store the icon type.
-	 *
-	 * @since 1.0.0
-	 * @var   string   $type   The icon type (solid or outline).
-	 */
-	public $type;
-
-	/**
-	 * Setup the properties that will be used to render the icons.
+	 * Set up the properties that will be used to render the icons.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param  string $icon       The icon to render.
-	 * @param  array  $attributes Attributes to attach to SVG HTML.
-	 * @param  string $type       The type of icon to render (solid or outline).
+	 * @param string $icon The icon to render.
+	 * @param array $attributes Attributes to attach to SVG HTML.
+	 * @param string $type The type of icon to render (solid or outline).
 	 */
-	public function __construct(string $icon = '', array $attributes = array(), string $type = 'solid') {
-		$this->icon = $icon;
-		$this->attributes = $attributes;
-		$this->type = $type;
-	}
+	public function __construct(
+        public string $icon = '',
+        public array $attributes = array(),
+        public string $type = 'solid',
+    ) {}
 
 	/**
-	 * Render the specified icon when the user "echo" the instance;
+	 * Render the specified icon when the user `echo` the instance;
 	 *
 	 * For example:
+     *
+     * ```php
 	 * echo new Icon('check-circle', ['width' => 60]);
+     * ```
 	 *
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 *
-	 * @return string   The rendered icon or void if validations fails.
+	 * @return string The rendered icon or void if validations fails.
 	 */
 	public function __toString(): string {
 		return $this->return();
@@ -70,31 +50,33 @@ class Icon {
 	/**
 	 * Render the specified icon.
 	 *
-	 * You can pass some attributes, see get_allow_attributes() method to see
+	 * You can pass some attributes, see `get_allow_attributes()` method to see
 	 * which attributes are available to set to SVG HTML.
 	 *
 	 * This method can print directly to the HTML or return it if $return
-	 * property is set to "true" This behavior happens when you call the "return()" method.
+	 * property is set to `true`.
+     *
+     * This behavior happens when you call the `return()` method.
 	 *
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 *
-	 * @param  string $icon       The icon to render.
-	 * @param  array  $attributes Attributes to attach to SVG HTML.
-	 * @param  string $type       The type of icon to render (solid or outline).
-	 *
-	 * @return string|void        The rendered icon or void if validations fails.
+	 * @param string $icon The icon to render.
+	 * @param array  $attributes Attributes to attach to SVG HTML.
+	 * @param string $type The type of icon to render (solid or outline).
+	 * @return string|void The rendered icon or void if validations fails.
 	 */
-	public function render(string $icon = '', array $attributes = array(), string $type = 'solid') {
+	public function render(
+        string $icon = '',
+        array $attributes = array(),
+        string $type = 'solid',
+    ) {
 		$this->setup_properties($icon, $attributes, $type);
 
 		if (empty($this->icon)) {
 			return;
 		}
 
-		$only_types = array(
-			'outline',
-			'solid',
-		);
+		$only_types = array( 'outline', 'solid' );
 
 		if (!in_array($this->type, $only_types, true)) {
 			return;
@@ -132,18 +114,21 @@ class Icon {
 	/**
 	 * Return the specified icon.
 	 *
-	 * The icon will be returned from the "render()" method so you can
+	 * The icon will be returned from the `render()` method so you can
 	 * print or manipulate the generated SVG HTML in your code.
 	 *
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 *
-	 * @param  string $icon       The icon to render.
-	 * @param  array  $attributes Attributes to attach to SVG HTML.
-	 * @param  string $type       The type of icon to render (solid or outline).
-	 *
-	 * @return string|void        The rendered icon or void if validations fails.
+	 * @param string $icon The icon to render.
+	 * @param array $attributes Attributes to attach to SVG HTML.
+	 * @param string $type The type of icon to render (solid or outline).
+	 * @return string|null The rendered icon or void if validations fails.
 	 */
-	public function return(string $icon = '', array $attributes = array(), string $type = 'solid') {
+	public function return(
+        string $icon = '',
+        array $attributes = array(),
+        string $type = 'solid',
+    ): ?string {
 		$this->return = true;
 		return $this->render($icon, $attributes, $type);
 	}
@@ -152,45 +137,32 @@ class Icon {
 	 * Get the allowed attributes that will be attached to SVG HTML.
 	 * Avoid unnecessary and invalid attributes.
 	 *
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 *
-	 * @return array   The allowed attribute to attach to SVG HTML.
+	 * @return array The allowed attribute to attach to SVG HTML.
 	 */
-	private function get_allow_attributes() {
-		return array(
-			'width',
-			'height',
-			'class',
-			'id',
-		);
+	protected function get_allow_attributes(): array {
+		return array( 'width', 'height', 'class', 'id' );
 	}
 
 	/**
-	 * Setup the icon, attributes and type properties.
+	 * Set up the icon, attributes and type properties.
 	 *
 	 * With this method we can handle attributes from class constructor
-	 * and methods like "render()" and "return()", even the "heroicon()" helper.
+	 * and methods like `render()` and `return()`, even the `heroicon()` helper.
 	 *
-	 * So if the user sets multiple icons from "render()" method it will override
+	 * So if the user sets multiple icons from `render()` method it will override
 	 * the properties that were set by the class constructor.
 	 *
-	 * @since  1.0.0
+	 * @since 1.0.0
 	 *
-	 * @param  string $icon       The icon to render.
-	 * @param  array  $attributes Attributes to attach to SVG HTML.
-	 * @param  string $type       The type of icon to render (solid or outline).
+	 * @param string $icon The icon to render.
+	 * @param array $attributes Attributes to attach to SVG HTML.
+	 * @param string $type The type of icon to render (solid or outline).
 	 */
-	private function setup_properties(string $icon, array $attributes, string $type) {
-		if (!empty($icon)) {
-			$this->icon = $icon;
-		}
-
-		if (!empty($attributes)) {
-			$this->attributes = $attributes;
-		}
-
-		if ($type !== 'solid') {
-			$this->type = $type;
-		}
+	protected function setup_properties(string $icon, array $attributes, string $type): void {
+        $this->icon = $icon ?: $this->icon;
+        $this->attributes = $attributes ?: $this->attributes;
+        $this->type = $type !== 'solid' ? $type : $this->type;
 	}
 }
